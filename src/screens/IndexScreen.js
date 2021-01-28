@@ -40,8 +40,6 @@ export default IndexScreen = ({ navigation }) => {
   )
 }
 
-// IndexScreen.na
-
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',

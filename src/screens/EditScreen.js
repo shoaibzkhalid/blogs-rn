@@ -1,11 +1,20 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useContext } from 'react'
+import BlogPostForm from '../components/BlogPostForm'
+import { Context } from '../context/BlogContext'
 
-const EditScreen = () => {
+const EditScreen = ({ navigation, route }) => {
+  const { state, editBlogPost } = useContext(Context)
+  const id = route.params.id
+  const blogPost = state.find((blogPost) => blogPost.id === id)
+
   return (
-    <View>
-      <Text>EditScreen</Text>
-    </View>
+    <BlogPostForm
+      initialValues={{ title: blogPost.title, content: blogPost.content }}
+      onSubmit={(title, content) => {
+        editBlogPost(id, title, content)
+        navigation.goBack()
+      }}
+    />
   )
 }
 
